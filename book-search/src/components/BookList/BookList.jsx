@@ -1,19 +1,14 @@
 import React from "react";
 import "./BookList.css";
 
-export default function BookList({ books }) {
-  // Удаляем дубликаты из books
-  const uniqueBooks = Array.from(new Set(books.map(JSON.stringify))).map(
-    JSON.parse
-  );
-
+export default function BookList({ books, totalBooks }) {
   return (
     <div id="searchResult">
       {books.length > 0 ? (
         <>
-          <p>Found {books.length} books</p>
+          <p>Found {totalBooks} books</p>
           <div className="bookListContainer">
-            {uniqueBooks.map((book, index) => (
+            {books.map((book, index) => (
               <div key={`${book.id}-${index}`} className="bookCard">
                 <div className="bookCardImageContainer">
                   <img
