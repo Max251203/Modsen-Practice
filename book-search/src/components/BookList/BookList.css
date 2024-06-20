@@ -14,7 +14,7 @@
   
   .bookCardImageContainer {
     width: 100%;
-    height: 200px; /* Задайте фиксированную высоту для изображений */
+    height: 200px;
     overflow: hidden;
   }
   
@@ -26,7 +26,7 @@
   
   .bookCardContent {
     padding: 0.5rem;
-    height: 100px; /* Задайте фиксированную высоту для содержимого карточки */
+    height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;

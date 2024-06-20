@@ -9,19 +9,23 @@ const API_BASE_URL = "https://www.googleapis.com/books/v1/volumes";
 export default function App() {
   const [books, setBooks] = useState([]);
   const [totalBooks, setTotalBooks] = useState(0);
-  const [query, setQuery] = useState("react");
-  const [filter, setFilter] = useState("all");
-  const [sort, setSort] = useState("relevance");
   const [loading, setLoading] = useState(false);
   const [startIndex, setStartIndex] = useState(0);
+  const [formState, setFormState] = useState({
+    query: "react",
+    filter: "all",
+    sort: "relevance",
+  });
 
   const fetchBooks = async () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `${API_BASE_URL}?q=${query || "react"}${
-          filter !== "all" ? `+subject:${filter}` : ""
-        }&orderBy=${sort}&startIndex=${startIndex}&maxResults=30&key=${API_KEY}`
+        `${API_BASE_URL}?q=${formState.query || "react"}${
+          formState.filter !== "all" ? `+subject:${formState.filter}` : ""
+        }&orderBy=${
+          formState.sort
+        }&startIndex=${startIndex}&maxResults=30&key=${API_KEY}`
       );
 
       if (response.data.items) {
@@ -36,44 +40,28 @@ export default function App() {
     }
   };
 
-  const handleSearch = (newQuery) => {
-    setQuery(newQuery);
+  const handleFormChange = (newFormState) => {
+    setFormState(newFormState);
     setBooks([]);
     setStartIndex(0);
     setTotalBooks(0);
-    fetchBooks();
-  };
-
-  const handleFilterChange = (newFilter) => {
-    setFilter(newFilter);
-    setBooks([]);
-    setStartIndex(0);
-    setTotalBooks(0);
-    fetchBooks();
-  };
-
-  const handleSortChange = (newSort) => {
-    setSort(newSort);
-    setBooks([]);
-    setStartIndex(0);
-    setTotalBooks(0);
-    fetchBooks();
-  };
-
-  const handleLoadMore = () => {
     fetchBooks();
   };
 
   return (
     <>
-      <Header
-        onSearch={handleSearch}
-        onFilterChange={handleFilterChange}
-        onSortChange={handleSortChange}
-      />
-      {loading && <p>Loading...</p>}
-      <BookList books={books} totalBooks={totalBooks} />
-      <button onClick={handleLoadMore}>Load More</button>
+      <Header onFormChange={handleFormChange} formState={formState} />
+      <main>
+        {loading && <p>Loading...</p>}
+        <BookList books={books} totalBooks={totalBooks} />
+        <button
+          onClick={() => {
+            fetchBooks();
+          }}
+        >
+          Load More
+        </button>
+      </main>
     </>
   );
 }

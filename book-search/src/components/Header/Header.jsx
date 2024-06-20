@@ -1,21 +1,14 @@
 import React from "react";
 import "./Header.css";
-import SearchInput from "../SearchInput/SearchInput";
-import FilterSort from "../FilterSort/FilterSort";
+import SearchForm from "../SearchForm/SearchForm";
 
-export default function Header({ onSearch, onFilterChange, onSortChange }) {
+export default function Header({ onFormChange, formState }) {
   return (
     <header>
       <div id="title" className="flex-center">
         <h1>Search for books</h1>
       </div>
-      <div id="searchBox">
-        <SearchInput onSearch={onSearch} />
-        <FilterSort
-          onFilterChange={onFilterChange}
-          onSortChange={onSortChange}
-        />
-      </div>
+      <SearchForm onFormChange={onFormChange} formState={formState} />
     </header>
   );
 }
