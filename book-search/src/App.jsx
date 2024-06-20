@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import BookList from "./components/BookList/BookList";
 import Header from "./components/Header/Header";
@@ -16,6 +16,10 @@ export default function App() {
     filter: "all",
     sort: "relevance",
   });
+
+  useEffect(() => {
+    fetchBooks();
+  }, [formState]);
 
   const fetchBooks = async () => {
     setLoading(true);
@@ -45,7 +49,6 @@ export default function App() {
     setBooks([]);
     setStartIndex(0);
     setTotalBooks(0);
-    fetchBooks();
   };
 
   return (
