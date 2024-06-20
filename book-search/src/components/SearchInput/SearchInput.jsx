@@ -7,6 +7,7 @@ export default function SearchInput({ onSearch }) {
 
   const handleInputChange = (e) => {
     setQuery(e.target.value);
+    setInputQuery(e.target.value); // Update inputQuery state
   };
 
   const handleSearch = () => {
