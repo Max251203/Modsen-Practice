@@ -1,64 +1,106 @@
 import React, { useState } from "react";
+import { FaSearch } from "react-icons/fa";
+import { useGlobalContext } from "../../context";
 import "./SearchForm.css";
-import loupe from "../../assets/loupe.png";
-import SelectBlock from "./SelectBlock";
-import { categories, sortOptions } from "../../data";
 
-export default function SearchForm({ onFormChange }) {
-  const [formState, setFormState] = useState({
-    query: "",
-    filter: "all",
-    sort: "relevance",
-  });
+const categories = [
+  "all",
+  "art",
+  "biography",
+  "computers",
+  "history",
+  "medical",
+  "poetry",
+];
+
+const sortOptions = [
+  { value: "relevance", label: "Relevance" },
+  { value: "newest", label: "Newest" },
+];
+
+const SearchForm = () => {
+  const { setSearchTerm, setCategory, setSortBy, setBooks, setTotalItems } =
+    useGlobalContext();
+  const [searchValue, setSearchValue] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedSort, setSelectedSort] = useState("relevance");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onFormChange(formState);
+    if (searchValue.trim() !== "") {
+      setSearchTerm(searchValue);
+      setCategory(selectedCategory);
+      setSortBy(selectedSort);
+      setBooks([]);
+      setTotalItems(0);
+    }
   };
 
   const handleInputChange = (e) => {
-    setFormState((prev) => ({
-      ...prev,
-      query: e.target.value,
-    }));
+    setSearchValue(e.target.value);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
+  };
+
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+  };
+
+  const handleSortChange = (e) => {
+    setSelectedSort(e.target.value);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div id="searchInputBox">
-        <input
-          id="searchInput"
-          className="input"
-          type="text"
-          placeholder="React"
-          value={formState.query}
-          onChange={handleInputChange}
-        />
-        <button className="but flex-center" type="submit">
-          <img src={loupe} alt="Search" />
-        </button>
+    <div className="search-form">
+      <div className="container">
+        <div className="search-form-content">
+          <form className="search-form" onSubmit={handleSubmit}>
+            <div className="search-form-elem flex flex-sb bg-white">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Search for books..."
+                value={searchValue}
+                onChange={handleInputChange}
+                onKeyPress={handleKeyPress}
+              />
+              <button type="submit" className="flex flex-c">
+                <FaSearch className="text-purple" size={32} />
+              </button>
+            </div>
+            <div className="filter-options">
+              <select
+                value={selectedCategory}
+                onChange={handleCategoryChange}
+                className="category-select"
+              >
+                {categories.map((category) => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                ))}
+              </select>
+              <select
+                value={selectedSort}
+                onChange={handleSortChange}
+                className="sort-select"
+              >
+                {sortOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </form>
+        </div>
       </div>
-      <div id="filterSortBox">
-        <SelectBlock
-          label="Categories"
-          options={categories}
-          value={formState.filter}
-          onChange={(e) =>
-            setFormState((prev) => ({ ...prev, filter: e.target.value }))
-          }
-        />
-        <SelectBlock
-          label="Sorting by"
-          options={sortOptions}
-          value={formState.sort}
-          onChange={(e) =>
-            setFormState((prev) => ({
-              ...prev,
-              sort: e.target.value,
-            }))
-          }
-        />
-      </div>
-    </form>
+    </div>
   );
-}
+};
+
+export default SearchForm;

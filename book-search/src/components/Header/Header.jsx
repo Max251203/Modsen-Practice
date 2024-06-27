@@ -1,14 +1,18 @@
 import React from "react";
-import "./Header.css";
 import SearchForm from "../SearchForm/SearchForm";
+import "./Header.css";
 
-export default function Header({ onFormChange, formState }) {
+const Header = () => {
   return (
     <header>
       <div id="title" className="flex-center">
         <h1>Search for books</h1>
       </div>
-      <SearchForm onFormChange={onFormChange} formState={formState} />
+      <div id="searchBox">
+        <SearchForm />
+      </div>
     </header>
   );
-}
+};
+
+export default Header;

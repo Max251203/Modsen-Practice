@@ -1,33 +1,31 @@
 import React from "react";
+import { useGlobalContext } from "../../context";
+import Book from "./Book";
+import Loading from "../Loader/Loader";
 import "./BookList.css";
 
-export default function BookList({ books, totalBooks }) {
+const BookList = () => {
+  const { books, loading, totalItems, loadMoreBooks } = useGlobalContext();
+
+  if (loading) return <Loading />;
+
   return (
-    <div id="searchResult">
-      {books.length > 0 ? (
-        <>
-          <p>Found {totalBooks} books</p>
-          <div className="bookListContainer">
-            {books.map((book, index) => (
-              <div key={`${book.id}-${index}`} className="bookCard">
-                <div className="bookCardImageContainer">
-                  <img
-                    src={book.volumeInfo.imageLinks?.thumbnail}
-                    alt={book.volumeInfo.title}
-                  />
-                </div>
-                <div className="bookCardContent">
-                  <h3>{book.volumeInfo.title}</h3>
-                  <p>Category: {book.volumeInfo.categories?.[0]}</p>
-                  <p>Authors: {book.volumeInfo.authors?.join(", ")}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </>
-      ) : (
-        <p>No books found</p>
-      )}
-    </div>
+    <section className="booklist">
+      <div className="container">
+        <div className="section-title">
+          <h2>Found {totalItems} books</h2>
+        </div>
+        <div className="booklist-content grid">
+          {books.map((book, index) => (
+            <Book key={index} book={book} />
+          ))}
+        </div>
+        <div className="load-more">
+          <button onClick={loadMoreBooks}>Load More</button>
+        </div>
+      </div>
+    </section>
   );
-}
+};
+
+export default BookList;
