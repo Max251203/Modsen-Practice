@@ -1,22 +1,9 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useGlobalContext } from "../../context";
+import { categories, sortOptions } from "../../constants/formConstants";
+import SelectBox from "./SelectBox";
 import "./SearchForm.css";
-
-const categories = [
-  "all",
-  "art",
-  "biography",
-  "computers",
-  "history",
-  "medical",
-  "poetry",
-];
-
-const sortOptions = [
-  { value: "relevance", label: "Relevance" },
-  { value: "newest", label: "Newest" },
-];
 
 const SearchForm = () => {
   const { setSearchTerm, setCategory, setSortBy, setBooks, setTotalItems } =
@@ -63,7 +50,7 @@ const SearchForm = () => {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Search for books..."
+                placeholder="Search"
                 value={searchValue}
                 onChange={handleInputChange}
                 onKeyPress={handleKeyPress}
@@ -73,28 +60,18 @@ const SearchForm = () => {
               </button>
             </div>
             <div className="filter-options">
-              <select
+              <SelectBox
+                options={categories}
                 value={selectedCategory}
                 onChange={handleCategoryChange}
-                className="category-select"
-              >
-                {categories.map((category) => (
-                  <option key={category} value={category}>
-                    {category}
-                  </option>
-                ))}
-              </select>
-              <select
+                label="Category"
+              />
+              <SelectBox
+                options={sortOptions}
                 value={selectedSort}
                 onChange={handleSortChange}
-                className="sort-select"
-              >
-                {sortOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
+                label="Sort by"
+              />
             </div>
           </form>
         </div>

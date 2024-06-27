@@ -1,8 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useCallback } from "react";
-
-const API_KEY = "AIzaSyCI_B28-8QZokqkrYuq-nwnG1NzXL9E6g8";
-const BASE_URL = "https://www.googleapis.com/books/v1/volumes";
+import { API_KEY, BASE_URL } from "./constants/apiConstatnts";
 
 const AppContext = React.createContext();
 
