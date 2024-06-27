@@ -1,11 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppProvider } from "./context";
 import "./index.css";
 import Home from "./pages/Home/Home";
-import BookList from "./components/BookList/BookList";
-import BookDetails from "./components/BookDetails/BookDetails";
+import BookList from "./components/Books/BookList/BookList";
+import BookDetails from "./components/Books/BookDetails/BookDetails";
 
 export default function App() {
   return (
