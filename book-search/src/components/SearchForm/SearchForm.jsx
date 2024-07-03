@@ -1,30 +1,30 @@
 import React, { useState } from "react";
-import { FaSearch } from "react-icons/fa";
+import SearchImg from "../../images/search.svg";
 import { useGlobalContext } from "../../context";
 import { categories, sortOptions } from "../../constants/formConstants";
 import SelectBox from "./SelectBox";
 import "./SearchForm.css";
 
 const SearchForm = () => {
-  const { setSearchTerm, setCategory, setSortBy, setBooks, setTotalItems } =
-    useGlobalContext();
-  const [searchValue, setSearchValue] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedSort, setSelectedSort] = useState("relevance");
+  const { setSearchParams } = useGlobalContext();
+  const [searchParams, setSearchParamsLocal] = useState({
+    searchTerm: "",
+    category: "all",
+    sortBy: "relevance",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (searchValue.trim() !== "") {
-      setSearchTerm(searchValue);
-      setCategory(selectedCategory);
-      setSortBy(selectedSort);
-      setBooks([]);
-      setTotalItems(0);
+    if (searchParams.searchTerm.trim() !== "") {
+      setSearchParams(searchParams);
     }
   };
 
   const handleInputChange = (e) => {
-    setSearchValue(e.target.value);
+    setSearchParamsLocal({
+      ...searchParams,
+      searchTerm: e.target.value,
+    });
   };
 
   const handleKeyPress = (e) => {
@@ -34,49 +34,50 @@ const SearchForm = () => {
   };
 
   const handleCategoryChange = (e) => {
-    setSelectedCategory(e.target.value);
+    setSearchParamsLocal({
+      ...searchParams,
+      category: e.target.value,
+    });
   };
 
   const handleSortChange = (e) => {
-    setSelectedSort(e.target.value);
+    setSearchParamsLocal({
+      ...searchParams,
+      sortBy: e.target.value,
+    });
   };
 
   return (
-    <div className="search-form">
-      <div className="container">
-        <div className="search-form-content">
-          <form className="search-form" onSubmit={handleSubmit}>
-            <div className="search-form-elem flex flex-sb bg-white">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Search"
-                value={searchValue}
-                onChange={handleInputChange}
-                onKeyPress={handleKeyPress}
-              />
-              <button type="submit" className="flex flex-c">
-                <FaSearch className="text-purple" size={32} />
-              </button>
-            </div>
-            <div className="filter-options">
-              <SelectBox
-                options={categories}
-                value={selectedCategory}
-                onChange={handleCategoryChange}
-                label="Category"
-              />
-              <SelectBox
-                options={sortOptions}
-                value={selectedSort}
-                onChange={handleSortChange}
-                label="Sort by"
-              />
-            </div>
-          </form>
+    <form onSubmit={handleSubmit}>
+      <div className="inputBox flex-center">
+        <div className="inputContainer flex-center">
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchParams.searchTerm}
+            onChange={handleInputChange}
+            onKeyPress={handleKeyPress}
+          />
+          <button type="submit" className="flex-center">
+            <img src={SearchImg} alt="search" id="searchImg" />
+          </button>
         </div>
       </div>
-    </div>
+      <div className="filterBox flex-center">
+        <SelectBox
+          options={categories}
+          value={searchParams.category}
+          onChange={handleCategoryChange}
+          label="Category:"
+        />
+        <SelectBox
+          options={sortOptions}
+          value={searchParams.sortBy}
+          onChange={handleSortChange}
+          label="Sort by:"
+        />
+      </div>
+    </form>
   );
 };
 

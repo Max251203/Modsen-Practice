@@ -12,7 +12,7 @@ header{
     height:40%;
     width:50%;
     color:rgb(255,255,255);
-    font-size: calc(24px + 6 * (100vw / 1980));
+    font-size: calc(1.5rem + 6 * (100vw - 320px) / 880)
 }
 
 #searchBox{

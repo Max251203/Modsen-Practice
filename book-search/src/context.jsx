@@ -5,23 +5,28 @@ import { API_KEY, BASE_URL } from "./constants/apiConstatnts";
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [category, setCategory] = useState("all");
-  const [sortBy, setSortBy] = useState("relevance");
+  const [searchParams, setSearchParams] = useState({
+    searchTerm: "",
+    category: "all",
+    sortBy: "relevance",
+  });
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [totalItems, setTotalItems] = useState(0);
   const [startIndex, setStartIndex] = useState(0);
 
   const fetchBooks = useCallback(async () => {
-    setBooks([]);
     setLoading(true);
     try {
       const response = await fetch(
-        `${BASE_URL}?q=${searchTerm}${
-          category !== "all" ? `+subject:${category}` : ""
+        `${BASE_URL}?q=${searchParams.searchTerm}${
+          searchParams.category !== "all"
+            ? `+subject:${searchParams.category}`
+            : ""
         }
-        &orderBy=${sortBy}&startIndex=${startIndex}&maxResults=30&key=${API_KEY}`
+        &orderBy=${
+          searchParams.sortBy
+        }&startIndex=${startIndex}&maxResults=30&key=${API_KEY}`
       );
       const data = await response.json();
       const { items, totalItems: total } = data;
@@ -36,25 +41,23 @@ const AppProvider = ({ children }) => {
           description: book.volumeInfo.description || "",
         }));
 
-        setBooks(newBooks);
+        setBooks((prevBooks) => [...prevBooks, ...newBooks]);
         setTotalItems(total);
-      } else {
-        setTotalItems(0);
       }
       setLoading(false);
     } catch (error) {
       console.log(error);
       setLoading(false);
     }
-  }, [searchTerm, category, sortBy, startIndex]);
+  }, [searchParams, startIndex]);
 
   useEffect(() => {
-    if (searchTerm.trim() !== "") {
+    if (searchParams.searchTerm.trim() !== "") {
       setBooks([]);
       setStartIndex(0);
       fetchBooks();
     }
-  }, [searchTerm, category, sortBy, fetchBooks]);
+  }, [searchParams, fetchBooks]);
 
   const loadMoreBooks = () => {
     setStartIndex((prevStartIndex) => prevStartIndex + 30);
@@ -63,17 +66,11 @@ const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        searchTerm,
-        setSearchTerm,
-        category,
-        setCategory,
-        sortBy,
-        setSortBy,
+        searchParams,
+        setSearchParams,
         books,
-        setBooks,
         loading,
         totalItems,
-        setTotalItems,
         loadMoreBooks,
       }}
     >

@@ -1,52 +1,85 @@
-.search-form {
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.inputBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50%;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  height: 85%;
+  background-color: rgb(255,255,255);
+  max-width: 100%;
+}
+
+.inputContainer input {
+  flex-grow: 1;
+  height: 100%;
+  background-color: transparent;
+  padding: 0.5rem;
+  max-width: 100%;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  white-space: nowrap;
+}
+
+.inputContainer button {
+  height: 100%;
+  padding: 0.5rem;
+  background-color: transparent;
+  cursor: pointer;
+  max-width: 100%; 
+}
+
+#searchImg {
+  height: 95%;
+  object-fit: contain;
+}
+
+.filterBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 50%;
+}
+
+.selectBox{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color:rgb(255,255,255);
+  flex: 1;
+}
+
+.selectBox input, select{
+  display: inline-block;
+  height:100%;
+  width:50%;
+  padding: 2%;
+}
+
+@media screen and (max-width: 989px) {
+  .inputContainer {
     width: 100%;
-    max-width: 680px;
   }
-  
-  .search-form-elem {
-    padding: 1.4rem 2.8rem;
+  .filterBox{
+    flex-direction: column;
+    height: auto;
   }
-  
-  .search-form-elem .form-control {
-    font-size: 2rem;
-    padding: 0.6rem;
-  }
-  
-  .search-form-elem .form-control::placeholder {
-    opacity: 0.9;
-  }
-  
-  .filter-options {
-    display: flex;
+  .selectBox{
     width: 100%;
-    flex-wrap: wrap;
-    gap: 1rem;
   }
-  
-  .select-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    height: 100px;
-    width: calc(50% - 0.5rem);
-  }
-  
-  .select-wrapper label {
-    color: rgb(255, 255, 255);
-    font-size: larger;
-  }
-  
-  .select-wrapper select {
-    height: 40%;
-    width: 50%;
-  }
-  
-  @media screen and (max-width: 989px) {
-    .filter-options {
-      flex-direction: column;
-    }
-  
-    .select-wrapper {
-      width: 100%;
-    }
-  }
+}

@@ -4,7 +4,7 @@ const SelectBox = ({ options, value, onChange, label }) => {
   const isObjectArray = options.length > 0 && typeof options[0] === "object";
 
   return (
-    <div className="select-wrapper">
+    <div className="selectBox">
       <label>{label}</label>
       <select value={value} onChange={onChange}>
         {options.map((option, index) => {
