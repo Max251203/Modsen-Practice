@@ -1,7 +1,7 @@
 import React from "react";
-import { useGlobalContext } from "../../../context";
-import Book from "../Book";
-import Loading from "../../Loader/Loader";
+import { useGlobalContext } from "@/context";
+import Book from "books/Book";
+import Loading from "components/Loader/Loader";
 import "./BookList.css";
 
 const BookList = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import SearchForm from "../SearchForm/SearchForm";
+import SearchForm from "components/SearchForm/SearchForm";
 import "./Header.css";
 
 const Header = () => {

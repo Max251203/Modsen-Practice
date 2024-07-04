@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import SearchImg from "../../images/search.svg";
-import { useGlobalContext } from "../../context";
-import { categories, sortOptions } from "../../constants/formConstants";
+import SearchImg from "images/search.svg";
+import { useGlobalContext } from "@/context";
+import { categories, sortOptions } from "constants/formConstants";
 import SelectBox from "./SelectBox";
 import "./SearchForm.css";
 

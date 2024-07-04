@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import coverImg from "../../images/no_cover.jpg";
-import "./BookList/BookList.css";
-import BookImage from "./BookImage";
-import BookInfo from "./BookInfo";
+import coverImg from "images/no_cover.jpg";
+import "books/BookList/BookList.css";
+import BookImage from "books/BookImage";
+import BookInfo from "books/BookInfo";
 
 const Book = ({ book }) => {
   const { id, title, authors, categories, thumbnail } = book;

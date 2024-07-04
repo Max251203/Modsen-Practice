@@ -1,5 +1,5 @@
 import React from "react";
-import BookInfoItem from "./BookInfoItem";
+import BookInfoItem from "books/BookInfoItem";
 
 const BookInfo = ({
   title,

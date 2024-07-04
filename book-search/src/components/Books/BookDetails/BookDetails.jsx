@@ -1,10 +1,10 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import coverImg from "../../../images/no_cover.jpg";
-import "./BookDetails.css";
-import BackButton from "../BackButton";
-import BookImage from "../BookImage";
-import BookInfo from "../BookInfo";
+import coverImg from "images/no_cover.jpg";
+import "books/BookDetails/BookDetails.css";
+import BackButton from "books/BackButton";
+import BookImage from "books/BookImage";
+import BookInfo from "books/BookInfo";
 
 const BookDetails = () => {
   const location = useLocation();

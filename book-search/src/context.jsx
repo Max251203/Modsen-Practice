@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useCallback } from "react";
-import { API_KEY, BASE_URL } from "./constants/apiConstatnts";
+import { API_KEY, BASE_URL } from "constants/apiConstatnts";
 
 const AppContext = React.createContext();
 
