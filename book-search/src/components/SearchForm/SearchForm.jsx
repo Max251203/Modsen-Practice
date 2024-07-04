@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SearchImg from "images/search.svg";
+import { FaSearch } from "react-icons/fa";
 import { useGlobalContext } from "@/context";
 import { categories, sortOptions } from "constants/formConstants";
 import SelectBox from "./SelectBox";
@@ -59,7 +60,7 @@ const SearchForm = () => {
             onKeyPress={handleKeyPress}
           />
           <button type="submit" className="flex-center">
-            <img src={SearchImg} alt="search" id="searchImg" />
+            <FaSearch className="text-purple" size={32} />
           </button>
         </div>
       </div>
