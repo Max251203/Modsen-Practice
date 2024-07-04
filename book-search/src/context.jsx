@@ -23,13 +23,13 @@ const AppProvider = ({ children }) => {
       const { items, totalItems: total } = data;
 
       if (items) {
-        const newBooks = MAPPED_BOOKS(items);
-        setBooks((prevBooks) => [...prevBooks, ...newBooks]);
+        setBooks((prevBooks) => [...prevBooks, ...MAPPED_BOOKS(items)]);
         setTotalItems(total);
       }
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching books:", error);
+    } finally {
       setLoading(false);
     }
   }, [searchParams, startIndex]);
@@ -37,10 +37,11 @@ const AppProvider = ({ children }) => {
   useEffect(() => {
     if (searchParams.searchTerm.trim() !== "") {
       setBooks([]);
+      setTotalItems(0);
       setStartIndex(0);
       fetchBooks();
     }
-  }, [searchParams, fetchBooks]);
+  }, [searchParams.searchTerm, fetchBooks]);
 
   const loadMoreBooks = () => {
     setStartIndex((prevStartIndex) => prevStartIndex + 30);
