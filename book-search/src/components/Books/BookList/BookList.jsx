@@ -17,7 +17,7 @@ const BookList = () => {
         </div>
         <div className="booklist-content grid">
           {books.map((book, index) => (
-            <Book key={index} book={book} />
+            <Book key={`${book.id}-${index}`} book={book} />
           ))}
         </div>
         <div className="load-more">
