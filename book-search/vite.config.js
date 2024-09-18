@@ -8,11 +8,14 @@ export default defineConfig({
   resolve : { 
     alias: {
       "@": path.resolve(__dirname, "./src/"),
-      pages: path.resolve(__dirname, "./src/pages"),
-      components: `${path.resolve(__dirname, "./src/components/")}`,
-      books: `${path.resolve(__dirname, "./src/components/Books/")}`,
-      images: `${path.resolve(__dirname, "./src/images/")}`,
-      constants: `${path.resolve(__dirname, "./src/constants/")}`
+      "@pages": path.resolve(__dirname, "./src/pages"),
+      "@components": `${path.resolve(__dirname, "./src/components/")}`,
+      "@BookCard": `${path.resolve(__dirname, "./src/components/BookCard/")}`,
+      "@BookList": `${path.resolve(__dirname, "./src/components/BookList/")}`,
+      "@Header": `${path.resolve(__dirname, "./src/components/Header/")}`,
+      "@SearchBar": `${path.resolve(__dirname, "./src/components/SeacrhBar/")}`,
+      "@assets": `${path.resolve(__dirname, "./src/assets/")}`,
+      "@constants": `${path.resolve(__dirname, "./src/constants/")}`
     },
   } 
 })

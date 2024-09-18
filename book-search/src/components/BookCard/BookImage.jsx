@@ -1,5 +1,5 @@
 import React from "react";
-import "books/BookList/BookList.css";
+import "@BookList/BookList.css";
 
 const BookImage = ({ thumbnail, title, coverImg, className }) => {
   return (

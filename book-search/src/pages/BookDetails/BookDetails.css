@@ -2,6 +2,8 @@
     padding: 6rem 0;
 }
 .back-btn{
+    height:2vw;
+  width: fit-content;
     margin-left: 20px;
     margin-bottom: 2.6rem;
     transition: var(--transition);

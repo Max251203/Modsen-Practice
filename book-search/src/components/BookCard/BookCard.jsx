@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import coverImg from "images/no_cover.jpg";
-import "books/BookList/BookList.css";
-import BookImage from "books/BookImage";
-import BookInfo from "books/BookInfo";
+import coverImg from "@assets/no_cover.jpg";
+import "@BookList/BookList.css";
+import BookImage from "./BookImage";
+import BookInfo from "./BookInfo";
 
-const Book = ({ book }) => {
+const BookCard = ({ book }) => {
   const { id, title, authors, categories, thumbnail } = book;
 
   return (
@@ -30,4 +30,4 @@ const Book = ({ book }) => {
   );
 };
 
-export default Book;
+export default BookCard;

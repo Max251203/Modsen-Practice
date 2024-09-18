@@ -1,10 +1,10 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import coverImg from "images/no_cover.jpg";
-import "books/BookDetails/BookDetails.css";
-import BackButton from "books/BackButton";
-import BookImage from "books/BookImage";
-import BookInfo from "books/BookInfo";
+import coverImg from "@assets/no_cover.jpg";
+import "./BookDetails.css";
+import BackButton from "@components/BackButton";
+import BookImage from "@BookCard/BookImage";
+import BookInfo from "@BookCard/BookInfo";
 
 const BookDetails = () => {
   const location = useLocation();
@@ -12,7 +12,7 @@ const BookDetails = () => {
   const { book } = location.state || {};
 
   if (!book) {
-    return <div className="book-details">Книг не найдено.</div>;
+    return <div className="book-details">Книга не найдена.</div>;
   }
 
   const { title, authors, categories, thumbnail, description } = book;

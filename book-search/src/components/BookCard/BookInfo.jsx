@@ -1,5 +1,5 @@
 import React from "react";
-import BookInfoItem from "books/BookInfoItem";
+import BookInfoItem from "./BookInfoItem";
 
 const BookInfo = ({
   title,
@@ -20,13 +20,13 @@ const BookInfo = ({
       />
       <BookInfoItem
         label="Авторы: "
-        value={authors.join(", ")}
+        value={authors?.join(", ")}
         divClass={itemDivClass}
         spanClass={itemSpanClass}
       />
       <BookInfoItem
         label="Категории: "
-        value={categories.join(", ")}
+        value={categories?.join(", ")}
         divClass={itemDivClass}
         spanClass={itemSpanClass}
       />

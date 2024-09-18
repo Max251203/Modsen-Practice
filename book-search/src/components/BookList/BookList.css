@@ -1,6 +1,5 @@
 .booklist, .book-details {
     padding: 3rem 0;
-    background-color: #f8f9fa;
   }
   
   .booklist-content {
@@ -61,6 +60,18 @@
     font-size: 14px;
   }
   
+#loadMoreButton{
+  height:2vw;
+  width: fit-content;
+  margin-top: 2vh;
+  border-radius: 20px;
+  border:1px outset #c6e2ff;
+  transition-duration:0.3s ;
+}
+#loadMoreButton:hover{
+  color: var(--blue-color);
+}
+
   @media screen and (min-width: 390px) {
     .booklist-content {
       grid-template-columns: repeat(2, 1fr);

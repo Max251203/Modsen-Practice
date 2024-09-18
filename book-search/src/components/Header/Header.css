@@ -5,21 +5,32 @@ header{
     align-items: center;
     height:40vh;
     width:100%;
-    background:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../../images/background.jpg) no-repeat center /cover;
+    background:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../../assets/background.jpg) no-repeat center /cover;
 }
 
+#headContent{
+    height: 100%;
+    width:40%;
+}
 #title{
     height:40%;
-    width:50%;
+    width:100%;
     color:rgb(255,255,255);
-    font-size: calc(1.5rem + 6 * (100vw - 320px) / 880)
+    padding: 2%;
+    font-size: calc(1.5rem + 5 * (100vw - 320px) / 880)
 }
-
-#searchBox{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 60%;
-    width: 50%;
+@media screen and (max-width: 1050px) {
+    #headContent {
+      width: 60%;
+    }
+  }
+@media screen and (max-width: 700px) {
+    #headContent {
+        width: 80%;
+    }
+}
+@media screen and (max-width: 500px) {
+    #headContent {
+        width: 100%;
+    }
 }

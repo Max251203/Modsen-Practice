@@ -5,8 +5,11 @@
       "@/*": ["./src/*", "./dist/*", ""],
       "pages/*": ["src/pages/*"],
       "components/*": ["src/components/*"],
-      "books/*": ["src/components/Books/*"],
-      "images/*": ["src/images/*"],
+      "BookCard/*": ["src/components/BookCard/*"],
+      "BookList/*": ["src/components/BookList/*"],
+      "Header/*": ["src/components/Header/*"],
+      "SeacrhBar/*": ["src/components/SeacrhBar/*"],
+      "assets/*": ["src/assets/*"],
       "constants/*": ["src/constants/*"],
     }
   } 
