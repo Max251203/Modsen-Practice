@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const API_KEY = 'AIzaSyCI_B28-8QZokqkrYuq-nwnG1NzXL9E6g8';
-const BASE_URL = 'https://www.googleapis.com/books/v1/volumes';
+const API_KEY = import.meta.env.VITE_API_KEY;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const searchBooks = async (query, category, sort, startIndex = 0) => {
   const categoryFilter = category !== 'all' ? `+subject:${category}` : '';
